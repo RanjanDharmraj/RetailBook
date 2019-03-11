@@ -1,4 +1,4 @@
-package com.iciciappathon.retailbook.ui
+package com.iciciappathon.retailbook.ui.home
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -9,14 +9,17 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.iciciappathon.retailbook.R
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.app_bar_main.*
+import com.iciciappathon.retailbook.ui.base.BaseActivity
+import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.app_bar_home.*
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->

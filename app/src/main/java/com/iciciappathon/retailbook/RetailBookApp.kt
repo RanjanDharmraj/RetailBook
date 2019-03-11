@@ -2,12 +2,13 @@ package com.iciciappathon.retailbook
 
 import android.app.Activity
 import android.support.multidex.MultiDexApplication
+import com.iciciappathon.retailbook.di.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject
 
-open class RetailBookApp : MultiDexApplication(), HasActivityInjector {
+class RetailBookApp : MultiDexApplication(), HasActivityInjector {
 
     @Inject
     lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Activity>
@@ -15,7 +16,17 @@ open class RetailBookApp : MultiDexApplication(), HasActivityInjector {
 
     override fun activityInjector(): AndroidInjector<Activity> = dispatchingActivityInjector
 
+
     override fun onCreate() {
         super.onCreate()
+        initializeAppComponent()
     }
+
+    fun initializeAppComponent() {
+        DaggerAppComponent.builder()
+            .application(this)
+            .build()
+            .inject(this)
+    }
+
 }

@@ -1,38 +1,26 @@
 package com.iciciappathon.retailbook.di
 
 import android.app.Application
-import dagger.Module
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.Retrofit
-import okhttp3.OkHttpClient
-import com.google.gson.Gson
-import javax.inject.Singleton
-import dagger.Provides
 import com.google.gson.FieldNamingPolicy
+import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import android.preference.PreferenceManager
-import android.content.SharedPreferences
 import com.iciciappathon.retailbook.BuildConfig
 import com.iciciappathon.retailbook.network.ApiService
-import com.iciciappathon.retailbook.persistence.PrefManager
-import dagger.Binds
+import dagger.Module
+import dagger.Provides
 import okhttp3.Cache
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
 
 
 @Module
 abstract class AppModule {
 
-    @Binds
-    abstract fun provideSharedPreference(sharedPreferenceStorage: SharedPreferences, application: Application): PrefManager
 
-
+    @Module
     companion object {
-        // Dagger will only look for methods annotated with @Provides
-        @Provides
-        @Singleton
-        @JvmStatic
-        fun providesSharedPreferences(application: Application): SharedPreferences =
-            PreferenceManager.getDefaultSharedPreferences(application)
 
         @Provides
         @Singleton
